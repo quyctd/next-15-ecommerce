@@ -8,7 +8,8 @@
 		"start": "next start",
 		"lint": "biome lint ./ --write",
 		"format": "biome format ./ --write",
-		"add:ui": "bunx shadcn@latest add"
+		"add:ui": "bunx shadcn@latest add",
+		"generate:icons": "node scripts/generate-icons.cjs"
 	},
 	"dependencies": {
 		"@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -26,6 +27,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@svgr/cli": "^8.1.0",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
