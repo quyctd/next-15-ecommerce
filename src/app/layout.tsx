@@ -1,3 +1,4 @@
+import { AppProviders } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -18,8 +19,10 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${interFont.className} antialiased`}>
-				<main>{children}</main>
-				<Toaster />
+				<AppProviders>
+					<main>{children}</main>
+					<Toaster richColors />
+				</AppProviders>
 			</body>
 		</html>
 	);
