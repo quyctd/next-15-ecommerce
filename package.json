@@ -11,9 +11,17 @@
 		"add:ui": "bunx shadcn@latest add"
 	},
 	"dependencies": {
+		"@radix-ui/react-aspect-ratio": "^1.1.0",
+		"@radix-ui/react-avatar": "^1.1.1",
+		"@radix-ui/react-dropdown-menu": "^2.1.2",
+		"@radix-ui/react-separator": "^1.1.0",
+		"@radix-ui/react-slot": "^1.1.0",
+		"embla-carousel-react": "^8.5.1",
 		"next": "15.0.4",
+		"next-themes": "^0.4.4",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react-dom": "^19.0.0",
+		"sonner": "^1.7.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
