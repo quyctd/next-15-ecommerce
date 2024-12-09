@@ -20,7 +20,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${interFont.className} antialiased`}>
 				<AppProviders>
-					<main>{children}</main>
+					<main className="container">{children}</main>
 					<Toaster richColors />
 				</AppProviders>
 			</body>
