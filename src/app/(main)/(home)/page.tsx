@@ -13,6 +13,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { useCategoryParams } from "@/hooks/use-category-params";
 import { useProducts } from "@/hooks/use-products";
+import { Ghost } from "lucide-react";
 import { useQueryState } from "nuqs";
 
 export default function Home() {
@@ -68,9 +69,9 @@ export default function Home() {
 				</BreadcrumbList>
 			</Breadcrumb>
 
-			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 sm:gap-x-6 gap-y-6 sm:gap-y-8">
-				{isFetching &&
-					Array.from({ length: 10 }).map((_, i) => (
+			{isFetching ? (
+				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 sm:gap-x-6 gap-y-6 sm:gap-y-8">
+					{Array.from({ length: 10 }).map((_, i) => (
 						<div key={i} className="space-y-3">
 							<AspectRatio ratio={1}>
 								<Skeleton className="h-full w-full rounded-xl" />
@@ -80,10 +81,20 @@ export default function Home() {
 							<Skeleton className="h-4 w-1/2" />
 						</div>
 					))}
-				{products?.map((product) => (
-					<ProductCard key={product.id} {...product} />
-				))}
-			</div>
+				</div>
+			) : products && products.length > 0 ? (
+				<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 sm:gap-x-6 gap-y-6 sm:gap-y-8">
+					{products.map((product) => (
+						<ProductCard key={product.id} {...product} />
+					))}
+				</div>
+			) : (
+				<div className="flex flex-col items-center justify-center py-12 text-app-secondary">
+					<Ghost className="h-12 w-12 mb-4" />
+					<h3 className="text-lg font-semibold">No products found</h3>
+					<p className="text-sm">Try adjusting your filters or search terms</p>
+				</div>
+			)}
 		</div>
 	);
 }
