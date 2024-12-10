@@ -36,7 +36,7 @@ export function AccountSelector({ className }: { className?: string }) {
 				</DropdownMenuItem>
 				<Separator className="my-2" />
 				<DropdownMenuItem asChild>
-					<Link href="/list" className="cursor-pointer">
+					<Link href="/listing" className="cursor-pointer">
 						List your item
 					</Link>
 				</DropdownMenuItem>

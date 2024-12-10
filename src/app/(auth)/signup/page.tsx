@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { ComingSoon } from "@/components/layout/coming-soon";
 
 export const metadata: Metadata = {
-	title: "Sign In | TestApp",
-	description: "Sign in to your TestApp account.",
+	title: "Sign Up | TestApp",
+	description: "Sign up for a TestApp account.",
 };
 
 const SignInPage = () => {

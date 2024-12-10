@@ -120,7 +120,7 @@ export function MobileMenu() {
 									<section>
 										<h3 className="text-[20px] py-4 font-medium">Support</h3>
 										<Link
-											href="/contact"
+											href="/message"
 											className="flex items-center justify-between py-2"
 										>
 											<span>Message to Yuta(The founder)</span>

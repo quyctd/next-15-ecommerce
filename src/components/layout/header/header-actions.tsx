@@ -18,7 +18,7 @@ export function HeaderActions() {
 			<MobileMenu />
 
 			<Link
-				href="/list"
+				href="/listing"
 				className="text-sm leading-[1.5] hidden md:block whitespace-nowrap"
 			>
 				List your creation
