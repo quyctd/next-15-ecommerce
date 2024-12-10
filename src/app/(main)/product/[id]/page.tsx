@@ -3,6 +3,7 @@
 import { useSetAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -24,12 +25,12 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { H3, Muted, P } from "@/components/ui/typography";
-import { MOCK_PRODUCTS } from "@/constants/products";
+import { useProduct } from "@/hooks/use-product";
 import { formatCurrency } from "@/lib/utils";
 import { cartActions } from "@/stores/cart.atom";
-import { useParams } from "next/navigation";
 
 interface ProductSpec {
 	label: string;
@@ -60,17 +61,11 @@ const tabs = [
 	},
 ];
 
-const getProductDetail = async (id: string) => {
-	const product = await fetch(`/api/products/${id}`);
-	return product;
-};
-
 export default function ProductPage() {
 	const { id } = useParams();
 	const [selectedTab, setSelectedTab] = useState("overview");
 	const setCart = useSetAtom(cartActions);
-
-	const productDetail = MOCK_PRODUCTS.find((product) => product.id === id);
+	const { data: productDetail, isLoading, error } = useProduct(id as string);
 
 	const handleAddToCart = () => {
 		if (!productDetail) return;
@@ -87,7 +82,26 @@ export default function ProductPage() {
 		toast.success("Added to cart");
 	};
 
-	if (!productDetail) return <div>Product not found</div>;
+	if (isLoading) {
+		return (
+			<div className="py-4 space-y-8">
+				<Skeleton className="h-8 w-1/3" />
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+					<Skeleton className="aspect-square rounded-xl" />
+					<div className="space-y-4">
+						<Skeleton className="h-8 w-3/4" />
+						<Skeleton className="h-4 w-1/2" />
+						<Skeleton className="h-12 w-full" />
+						<Skeleton className="h-12 w-full" />
+					</div>
+				</div>
+			</div>
+		);
+	}
+
+	if (error || !productDetail) {
+		return <div className="py-4">Product not found</div>;
+	}
 
 	return (
 		<div className="py-4">
