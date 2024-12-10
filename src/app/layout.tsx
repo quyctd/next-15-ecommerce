@@ -1,3 +1,4 @@
+import { PasswordGate } from "@/components/auth/password-gate";
 import { AppProviders } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
@@ -20,7 +21,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${interFont.className} antialiased`}>
 				<AppProviders>
-					{children}
+					<PasswordGate>{children}</PasswordGate>
 					<Toaster richColors />
 				</AppProviders>
 			</body>
