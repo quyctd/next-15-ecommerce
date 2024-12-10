@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { IconAccount, IconMenu } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +10,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 
 export function AccountSelector({ className }: { className?: string }) {
 	return (

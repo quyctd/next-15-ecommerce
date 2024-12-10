@@ -1,5 +1,16 @@
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import Link from "next/link";
 import { useState } from "react";
+
+import {
+	IconChevronRight,
+	IconJpFlag,
+	IconMenu,
+	IconShoppingCart,
+	IconUsFlag,
+} from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
 	Sheet,
 	SheetContent,
@@ -7,16 +18,6 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-	IconMenu,
-	IconChevronRight,
-	IconShoppingCart,
-	IconUsFlag,
-	IconJpFlag,
-} from "@/components/icons";
-import Link from "next/link";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { Separator } from "@/components/ui/separator";
 
 interface Language {
 	code: string;

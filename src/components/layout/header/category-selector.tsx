@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import { IconChevronRight } from "@/components/icons";
 import {
 	DropdownMenu,
@@ -5,10 +7,9 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
-import { useCategoryParams } from "@/hooks/use-category-params";
 import { categories } from "@/constants/categories";
+import { useCategoryParams } from "@/hooks/use-category-params";
+import { cn } from "@/lib/utils";
 import type { Category } from "@/types/category";
 
 export function CategorySelector() {

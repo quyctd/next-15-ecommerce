@@ -1,13 +1,8 @@
 "use client";
 
-import ChilloutVRImage from "@/assets/images/chillout-vr.png";
-import ClusterImage from "@/assets/images/cluster.png";
-import NeosVRImage from "@/assets/images/neos-vr.png";
-import ResoniteImage from "@/assets/images/resonite.png";
-import SpatialImage from "@/assets/images/spatial.png";
-import VirtualCastImage from "@/assets/images/virtual-cast.png";
-import VRChatPCVRImage from "@/assets/images/vr-chat-pcvr.png";
-import VRChatQuestImage from "@/assets/images/vr-chat-quest.png";
+import Image from "next/image";
+import { useState } from "react";
+
 import { IconAdjustments, IconClose } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,9 +12,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DualRangeSlider } from "@/components/ui/dual-range-slider";
 import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+
+import ChilloutVRImage from "@/assets/images/chillout-vr.png";
+import ClusterImage from "@/assets/images/cluster.png";
+import NeosVRImage from "@/assets/images/neos-vr.png";
+import ResoniteImage from "@/assets/images/resonite.png";
+import SpatialImage from "@/assets/images/spatial.png";
+import VirtualCastImage from "@/assets/images/virtual-cast.png";
+import VRChatPCVRImage from "@/assets/images/vr-chat-pcvr.png";
+import VRChatQuestImage from "@/assets/images/vr-chat-quest.png";
 
 const platforms = [
 	{ id: "vrchat-quest", name: "VRChat (Quest)", image: VRChatQuestImage },

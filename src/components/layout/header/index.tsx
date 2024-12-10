@@ -1,9 +1,11 @@
 "use client";
 
-import { IconLogo } from "@/components/icons";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+
+import { IconLogo } from "@/components/icons";
+import { cn } from "@/lib/utils";
+
 import { HeaderActions } from "./header-actions";
 import { SearchBar } from "./search-bar";
 
