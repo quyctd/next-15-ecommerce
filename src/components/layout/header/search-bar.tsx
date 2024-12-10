@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { FilterAdjustments } from "./filter-adjustments";
 
 export function SearchBar({
 	className,
@@ -59,13 +60,7 @@ export function SearchBar({
 					</Button>
 				</div>
 			</div>
-			<Button
-				variant="outline"
-				className="rounded-full min-w-10 hidden md:inline-flex"
-				size="icon"
-			>
-				<IconAdjustments className="size-6" />
-			</Button>
+			<FilterAdjustments />
 		</div>
 	);
 }
