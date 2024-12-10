@@ -1,5 +1,30 @@
 import type { Product } from "@/types/product";
 
+import ChilloutVRImage from "@/assets/images/chillout-vr.png";
+import ClusterImage from "@/assets/images/cluster.png";
+import NeosVRImage from "@/assets/images/neos-vr.png";
+import ResoniteImage from "@/assets/images/resonite.png";
+import SpatialImage from "@/assets/images/spatial.png";
+import VirtualCastImage from "@/assets/images/virtual-cast.png";
+import VRChatPCVRImage from "@/assets/images/vr-chat-pcvr.png";
+import VRChatQuestImage from "@/assets/images/vr-chat-quest.png";
+
+export const PLATFORMS = [
+	{ id: "vrchat-quest", name: "VRChat (Quest)", image: VRChatQuestImage },
+	{ id: "vrchat-pcvr", name: "VRChat (PCVR)", image: VRChatPCVRImage },
+	{ id: "spatial", name: "Spatial", image: SpatialImage },
+	{ id: "chillout-vr", name: "ChilloutVR", image: ChilloutVRImage },
+	{ id: "resonite", name: "Resonite", image: ResoniteImage },
+	{ id: "neos-vr", name: "Neos VR", image: NeosVRImage },
+	{ id: "cluster", name: "Cluster", image: ClusterImage },
+	{
+		id: "virtual-cast",
+		name: "Virtual Cast",
+		image: VirtualCastImage,
+	},
+	{ id: "others", name: "Others" },
+];
+
 export const MOCK_PRODUCTS: Product[] = [
 	{
 		id: "1",
@@ -10,6 +35,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.5,
 		categoryId: "avatars",
 		subCategoryId: "human-like",
+		platforms: ["vrchat-quest", "vrchat-pcvr", "chillout-vr"],
 	},
 	{
 		id: "2",
@@ -20,6 +46,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.0,
 		categoryId: "fashion",
 		subCategoryId: "accessories",
+		platforms: ["vrchat-quest", "vrchat-pcvr", "resonite"],
 	},
 	{
 		id: "3",
@@ -30,6 +57,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.7,
 		categoryId: "avatars",
 		subCategoryId: "anthro-furry",
+		platforms: ["vrchat-pcvr", "chillout-vr"],
 	},
 	{
 		id: "4",
@@ -40,6 +68,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.8,
 		categoryId: "avatars",
 		subCategoryId: "robot-cyborgs",
+		platforms: ["vrchat-pcvr", "resonite", "neos-vr"],
 	},
 	{
 		id: "5",
@@ -50,6 +79,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.2,
 		categoryId: "avatars",
 		subCategoryId: "anthro-furry",
+		platforms: ["vrchat-pcvr", "chillout-vr"],
 	},
 	{
 		id: "6",
@@ -60,6 +90,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 3.9,
 		categoryId: "fashion",
 		subCategoryId: "clothes",
+		platforms: null,
 	},
 	{
 		id: "7",
@@ -70,6 +101,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.6,
 		categoryId: "fashion",
 		subCategoryId: "accessories",
+		platforms: ["vrchat-pcvr", "spatial"],
 	},
 	{
 		id: "8",
@@ -80,6 +112,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 3.7,
 		categoryId: null,
 		subCategoryId: null,
+		platforms: null,
 	},
 	{
 		id: "9",
@@ -90,6 +123,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.9,
 		categoryId: "fashion",
 		subCategoryId: "others-fashion",
+		platforms: ["vrchat-pcvr", "vrchat-quest", "resonite"],
 	},
 	{
 		id: "10",
@@ -100,6 +134,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.3,
 		categoryId: "avatars",
 		subCategoryId: "others",
+		platforms: ["vrchat-pcvr", "cluster"],
 	},
 	{
 		id: "11",
@@ -110,6 +145,7 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.4,
 		categoryId: "fashion",
 		subCategoryId: "accessories",
+		platforms: ["vrchat-pcvr", "spatial", "virtual-cast"],
 	},
 	{
 		id: "12",
@@ -120,5 +156,6 @@ export const MOCK_PRODUCTS: Product[] = [
 		rating: 4.8,
 		categoryId: "fashion",
 		subCategoryId: "clothes",
+		platforms: ["vrchat-pcvr", "resonite", "neos-vr"],
 	},
 ];

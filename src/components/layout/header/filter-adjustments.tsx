@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useQueryState } from "nuqs";
 import { useState } from "react";
 
 import { IconAdjustments, IconClose } from "@/components/icons";
@@ -12,37 +13,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DualRangeSlider } from "@/components/ui/dual-range-slider";
 import { Separator } from "@/components/ui/separator";
+import { PLATFORMS } from "@/constants/products";
 import { cn } from "@/lib/utils";
-
-import ChilloutVRImage from "@/assets/images/chillout-vr.png";
-import ClusterImage from "@/assets/images/cluster.png";
-import NeosVRImage from "@/assets/images/neos-vr.png";
-import ResoniteImage from "@/assets/images/resonite.png";
-import SpatialImage from "@/assets/images/spatial.png";
-import VirtualCastImage from "@/assets/images/virtual-cast.png";
-import VRChatPCVRImage from "@/assets/images/vr-chat-pcvr.png";
-import VRChatQuestImage from "@/assets/images/vr-chat-quest.png";
-
-const platforms = [
-	{ id: "vrchat-quest", name: "VRChat (Quest)", image: VRChatQuestImage },
-	{ id: "vrchat-pcvr", name: "VRChat (PCVR)", image: VRChatPCVRImage },
-	{ id: "spatial", name: "Spatial", image: SpatialImage },
-	{ id: "chillout-vr", name: "ChilloutVR", image: ChilloutVRImage },
-	{ id: "resonite", name: "Resonite", image: ResoniteImage },
-	{ id: "neos-vr", name: "Neos VR", image: NeosVRImage },
-	{ id: "cluster", name: "Cluster", image: ClusterImage },
-	{
-		id: "virtual-cast",
-		name: "Virtual Cast",
-		image: VirtualCastImage,
-	},
-	{ id: "others", name: "Others" },
-];
 
 export function FilterAdjustments() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [priceRange, setPriceRange] = useState([0, 1000]);
 	const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
+	const [_priceMin, setPriceMin] = useQueryState("priceMin");
+	const [_priceMax, setPriceMax] = useQueryState("priceMax");
+	const [_queryPlatforms, setQueryPlatforms] = useQueryState("platforms", {
+		parse: (value: string) => value.split(","),
+		serialize: (value: string[]) => value.join(","),
+	});
 
 	const handlePlatformToggle = (platformId: string) => {
 		setSelectedPlatforms((prev) =>
@@ -55,6 +38,9 @@ export function FilterAdjustments() {
 	const handleClearAll = () => {
 		setPriceRange([0, 1000]);
 		setSelectedPlatforms([]);
+		setPriceMin(null);
+		setPriceMax(null);
+		setQueryPlatforms(null);
 	};
 
 	const handleClose = () => {
@@ -62,7 +48,14 @@ export function FilterAdjustments() {
 	};
 
 	const handleApply = () => {
-		// Implement filter application logic here
+		setPriceMin(priceRange[0].toString());
+		setPriceMax(priceRange[1].toString());
+		if (selectedPlatforms.length > 0) {
+			setQueryPlatforms(selectedPlatforms);
+		} else {
+			setQueryPlatforms(null);
+		}
+		setIsOpen(false);
 	};
 
 	return (
@@ -129,7 +122,7 @@ export function FilterAdjustments() {
 					<div className="space-y-4">
 						<h3 className="text-xl">Platforms</h3>
 						<div className="flex flex-wrap gap-3">
-							{platforms.map((platform) => (
+							{PLATFORMS.map((platform) => (
 								<button
 									key={platform.id}
 									onClick={() => handlePlatformToggle(platform.id)}

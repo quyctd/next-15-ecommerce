@@ -7,4 +7,5 @@ export type Product = {
 	rating: number;
 	categoryId: string | null;
 	subCategoryId: string | null;
+	platforms?: string[] | null;
 };

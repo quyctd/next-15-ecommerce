@@ -18,10 +18,20 @@ import { useQueryState } from "nuqs";
 export default function Home() {
 	const { category, subCategory } = useCategoryParams();
 	const [search] = useQueryState("q");
+	const [priceMin] = useQueryState("priceMin");
+	const [priceMax] = useQueryState("priceMax");
+	const [platforms] = useQueryState("platforms", {
+		parse: (value: string) => value.split(","),
+		serialize: (value: string[]) => value.join(","),
+	});
+
 	const { data: products, isFetching } = useProducts({
 		category: category?.id,
 		subcategory: subCategory?.id,
 		search,
+		priceMin,
+		priceMax,
+		platforms,
 	});
 
 	return (
