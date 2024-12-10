@@ -1,12 +1,13 @@
 "use client";
 
-import { IconAdjustments, IconSearch } from "@/components/icons";
+import { IconSearch } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { FilterAdjustments } from "./filter-adjustments";
+import { CategorySelector } from "./category-selector";
 
 export function SearchBar({
 	className,
@@ -16,6 +17,11 @@ export function SearchBar({
 	style?: React.CSSProperties;
 }) {
 	const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+	const handleCategoryChange = (category: string) => {
+		// Handle category change if needed
+		console.log("Selected category:", category);
+	};
 
 	return (
 		<div
@@ -46,17 +52,14 @@ export function SearchBar({
 				<Separator orientation="vertical" className="h-8" />
 
 				<div className="flex items-center justify-between gap-6 p-2 pl-6 pr-1 w-full">
-					<div className="flex flex-col items-start">
-						<span className="text-xs font-bold text-app-gray">Category</span>
-						<button className="text-app-gray leading-[1.5]">All</button>
-					</div>
+					<CategorySelector onCategoryChange={handleCategoryChange} />
 
 					<Button
 						variant="ghost"
 						size="icon"
-						className="bg-app-primary hover:bg-app-primary-hover rounded-full"
+						className="bg-app-primary hover:bg-app-primary-hover rounded-full min-w-10"
 					>
-						<IconSearch className="h-5 w-5 text-white" />
+						<IconSearch className="size-5 min-w-5 text-white" />
 					</Button>
 				</div>
 			</div>

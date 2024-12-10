@@ -78,7 +78,7 @@ export function FilterAdjustments() {
 				align="end"
 				className="w-[560px] p-0 bg-app-background-2 border-app-border-dark"
 			>
-				<div className="flex items-center justify-between">
+				<div className="flex items-center justify-between p-5">
 					<Button
 						variant="ghost"
 						size="icon"
