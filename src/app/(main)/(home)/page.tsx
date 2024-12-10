@@ -1,3 +1,6 @@
+"use client";
+
+import { useCategoryParams } from "@/hooks/use-category-params";
 import { ProductCard } from "@/components/product/product-card";
 import {
 	Breadcrumb,
@@ -9,17 +12,39 @@ import {
 } from "@/components/ui/breadcrumb";
 
 export default function Home() {
+	const { category, subCategory } = useCategoryParams();
+
 	return (
 		<div className="p-4">
 			<Breadcrumb className="mb-6">
 				<BreadcrumbList>
 					<BreadcrumbItem>
-						<BreadcrumbLink href="/">Parent Category</BreadcrumbLink>
+						<BreadcrumbLink href="/">All Categories</BreadcrumbLink>
 					</BreadcrumbItem>
-					<BreadcrumbSeparator />
-					<BreadcrumbItem>
-						<BreadcrumbPage>Children Category</BreadcrumbPage>
-					</BreadcrumbItem>
+
+					{category && (
+						<>
+							<BreadcrumbSeparator />
+							<BreadcrumbItem>
+								{subCategory ? (
+									<BreadcrumbLink href={`/?category=${category.id}`}>
+										{category.name}
+									</BreadcrumbLink>
+								) : (
+									<BreadcrumbPage>{category.name}</BreadcrumbPage>
+								)}
+							</BreadcrumbItem>
+						</>
+					)}
+
+					{subCategory && category && (
+						<>
+							<BreadcrumbSeparator />
+							<BreadcrumbItem>
+								<BreadcrumbPage>{subCategory.name}</BreadcrumbPage>
+							</BreadcrumbItem>
+						</>
+					)}
 				</BreadcrumbList>
 			</Breadcrumb>
 
