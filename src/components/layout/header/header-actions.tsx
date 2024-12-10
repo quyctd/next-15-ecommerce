@@ -6,6 +6,7 @@ import {
 } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { LanguageSelector } from "./language-selector";
 
 export function HeaderActions() {
 	return (
@@ -21,9 +22,7 @@ export function HeaderActions() {
 				List your creation
 			</Link>
 
-			<Button variant="ghost" size="icon" className="hidden md:inline-flex">
-				<IconGlobe className="h-5 w-5" />
-			</Button>
+			<LanguageSelector className="hidden md:inline-flex" />
 
 			<Link href="/signin" className="hidden md:block">
 				<Button
