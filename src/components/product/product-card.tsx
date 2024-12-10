@@ -11,6 +11,7 @@ import type { Product } from "@/types/product";
 export interface ProductCardProps extends Product {}
 
 export function ProductCard({
+	id,
 	name,
 	creator,
 	rating,
@@ -18,7 +19,7 @@ export function ProductCard({
 	image,
 }: ProductCardProps) {
 	return (
-		<Link href={`/product/${name}`}>
+		<Link href={`/product/${id}`}>
 			<Card className="overflow-hidden border-none p-0">
 				<AspectRatio ratio={1}>
 					<Image

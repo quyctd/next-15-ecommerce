@@ -1,8 +1,10 @@
 "use client";
 
+import { useSetAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { toast } from "sonner";
 
 import { ProductRating } from "@/components/product/product-rating";
 import { Badge } from "@/components/ui/badge";
@@ -24,7 +26,10 @@ import {
 } from "@/components/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { H3, Muted, P } from "@/components/ui/typography";
+import { MOCK_PRODUCTS } from "@/constants/products";
 import { formatCurrency } from "@/lib/utils";
+import { cartActions } from "@/stores/cart.atom";
+import { useParams } from "next/navigation";
 
 interface ProductSpec {
 	label: string;
@@ -55,8 +60,34 @@ const tabs = [
 	},
 ];
 
+const getProductDetail = async (id: string) => {
+	const product = await fetch(`/api/products/${id}`);
+	return product;
+};
+
 export default function ProductPage() {
+	const { id } = useParams();
 	const [selectedTab, setSelectedTab] = useState("overview");
+	const setCart = useSetAtom(cartActions);
+
+	const productDetail = MOCK_PRODUCTS.find((product) => product.id === id);
+
+	const handleAddToCart = () => {
+		if (!productDetail) return;
+
+		setCart({
+			type: "ADD_ITEM",
+			payload: {
+				id: productDetail.id,
+				name: productDetail.name,
+				price: productDetail.price,
+				image: productDetail.image,
+			},
+		});
+		toast.success("Added to cart");
+	};
+
+	if (!productDetail) return <div>Product not found</div>;
 
 	return (
 		<div className="py-4">
@@ -67,7 +98,7 @@ export default function ProductPage() {
 					</BreadcrumbItem>
 					<BreadcrumbSeparator />
 					<BreadcrumbItem>
-						<BreadcrumbPage>[VRChat]Elena by HIRO JAPAN</BreadcrumbPage>
+						<BreadcrumbPage>{productDetail.name}</BreadcrumbPage>
 					</BreadcrumbItem>
 				</BreadcrumbList>
 			</Breadcrumb>
@@ -96,7 +127,7 @@ export default function ProductPage() {
 
 				<div className="space-y-6">
 					<div>
-						<H3>[VRChat]Elena by HIRO JAPAN</H3>
+						<H3>{productDetail.name}</H3>
 						<div className="flex items-center gap-4 mt-2">
 							<ProductRating rating={0} />
 							<Link href="/shop/hiro-japan" className="text-sm text-app-gray">
@@ -109,7 +140,9 @@ export default function ProductPage() {
 						<div className="flex items-center justify-between">
 							<P className="text-2xl font-bold">{formatCurrency(50)}</P>
 							<div className="space-x-2">
-								<Button variant="outline">Add to Cart</Button>
+								<Button variant="outline" onClick={handleAddToCart}>
+									Add to Cart
+								</Button>
 								<Button>Buy Now</Button>
 							</div>
 						</div>
