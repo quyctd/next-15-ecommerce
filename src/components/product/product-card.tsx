@@ -6,14 +6,9 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
 import { Muted, P } from "@/components/ui/typography";
 import { formatCurrency } from "@/lib/utils";
+import type { Product } from "@/types/product";
 
-export interface ProductCardProps {
-	name: string;
-	creator: string;
-	rating: number;
-	price: number;
-	image: string;
-}
+export interface ProductCardProps extends Product {}
 
 export function ProductCard({
 	name,

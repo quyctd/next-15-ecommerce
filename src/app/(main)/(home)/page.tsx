@@ -1,6 +1,5 @@
 "use client";
 
-import { useCategoryParams } from "@/hooks/use-category-params";
 import { ProductCard } from "@/components/product/product-card";
 import {
 	Breadcrumb,
@@ -10,9 +9,20 @@ import {
 	BreadcrumbPage,
 	BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { MOCK_PRODUCTS } from "@/constants/products";
+import { useCategoryParams } from "@/hooks/use-category-params";
+import { useMemo } from "react";
 
 export default function Home() {
 	const { category, subCategory } = useCategoryParams();
+
+	const filteredProducts = useMemo(() => {
+		return MOCK_PRODUCTS.filter((product) => {
+			if (category && product.categoryId !== category.id) return false;
+			if (subCategory && product.subCategoryId !== subCategory.id) return false;
+			return true;
+		});
+	}, [category, subCategory]);
 
 	return (
 		<div className="p-4">
@@ -49,15 +59,8 @@ export default function Home() {
 			</Breadcrumb>
 
 			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 sm:gap-x-6 gap-y-6 sm:gap-y-8">
-				{Array.from({ length: 20 }).map((_, index) => (
-					<ProductCard
-						key={index}
-						name="Product name"
-						creator="Creator name"
-						rating={0}
-						price={10.5}
-						image="https://picsum.photos/200/300"
-					/>
+				{filteredProducts.map((product) => (
+					<ProductCard key={product.id} {...product} />
 				))}
 			</div>
 		</div>

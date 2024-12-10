@@ -13,8 +13,13 @@ import { cn } from "@/lib/utils";
 import type { Category } from "@/types/category";
 
 export function CategorySelector() {
-	const { category, subCategory, setCategoryId, setSubCategoryId } =
-		useCategoryParams();
+	const {
+		category,
+		subCategory,
+		setCategoryId,
+		setSubCategoryId,
+		clearCategory,
+	} = useCategoryParams();
 	const [isOpen, setIsOpen] = useState(false);
 	const [isMobile, setIsMobile] = useState(false);
 
@@ -33,8 +38,12 @@ export function CategorySelector() {
 		selectedCategory: Category,
 	) => {
 		e.preventDefault();
-		setCategoryId(selectedCategory.id);
-		setSubCategoryId(null);
+		if (selectedCategory.id === "all") {
+			clearCategory();
+		} else {
+			setCategoryId(selectedCategory.id);
+			setSubCategoryId(null);
+		}
 		if (!selectedCategory.children) {
 			setIsOpen(false);
 		}
