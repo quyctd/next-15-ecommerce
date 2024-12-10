@@ -6,6 +6,7 @@ import {
 } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { AccountSelector } from "./account-selector";
 import { LanguageSelector } from "./language-selector";
 
 export function HeaderActions() {
@@ -24,17 +25,7 @@ export function HeaderActions() {
 
 			<LanguageSelector className="hidden md:inline-flex" />
 
-			<Link href="/signin" className="hidden md:block">
-				<Button
-					variant="outline"
-					className="rounded-full h-12 w-auto p-2 gap-[10px]"
-				>
-					<>
-						<IconMenu className="h-5 w-5" />
-						<IconAccount className="h-8 w-8" />
-					</>
-				</Button>
-			</Link>
+			<AccountSelector className="hidden md:inline-flex" />
 
 			<Link href="/cart" className="hidden md:block">
 				<Button
