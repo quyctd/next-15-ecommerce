@@ -1,20 +1,16 @@
-import {
-	IconAccount,
-	IconGlobe,
-	IconMenu,
-	IconShoppingCart,
-} from "@/components/icons";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+import { IconShoppingCart } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+
 import { AccountSelector } from "./account-selector";
 import { LanguageSelector } from "./language-selector";
+import { MobileMenu } from "./mobile-menu";
 
 export function HeaderActions() {
 	return (
 		<div className="flex items-center gap-6">
-			<Button variant="outline" size="icon" className="rounded-full md:hidden">
-				<IconMenu className="h-6 w-6" />
-			</Button>
+			<MobileMenu />
 
 			<Link
 				href="/list"
