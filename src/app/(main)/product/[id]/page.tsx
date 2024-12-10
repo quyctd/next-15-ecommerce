@@ -82,6 +82,10 @@ export default function ProductPage() {
 		toast.success("Added to cart");
 	};
 
+	const handleBuyNow = () => {
+		toast.info("Buy Now feature coming soon!");
+	};
+
 	if (isLoading) {
 		return (
 			<div className="py-4 space-y-8">
@@ -157,7 +161,7 @@ export default function ProductPage() {
 								<Button variant="outline" onClick={handleAddToCart}>
 									Add to Cart
 								</Button>
-								<Button>Buy Now</Button>
+								<Button onClick={handleBuyNow}>Buy Now</Button>
 							</div>
 						</div>
 						<Button variant="outline" disabled className="w-full">
