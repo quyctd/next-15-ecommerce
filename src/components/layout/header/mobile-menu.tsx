@@ -44,6 +44,10 @@ export function MobileMenu() {
 		setView("menu");
 	};
 
+	const handleNavigationClick = () => {
+		setOpen(false);
+	};
+
 	return (
 		<Sheet open={open} onOpenChange={setOpen}>
 			<SheetTrigger asChild>
@@ -82,6 +86,7 @@ export function MobileMenu() {
 										<Link
 											href="/cart"
 											className="flex items-center justify-between py-2"
+											onClick={handleNavigationClick}
 										>
 											<span className="flex items-center gap-2">
 												<IconShoppingCart className="h-6 w-6" />
@@ -101,6 +106,7 @@ export function MobileMenu() {
 											<Link
 												href="/signin"
 												className="flex items-center justify-between py-2"
+												onClick={handleNavigationClick}
 											>
 												<span>Sign in</span>
 												<IconChevronRight className="h-5 w-5" />
@@ -108,6 +114,7 @@ export function MobileMenu() {
 											<Link
 												href="/signup"
 												className="flex items-center justify-between py-2"
+												onClick={handleNavigationClick}
 											>
 												<span>Sign up</span>
 												<IconChevronRight className="h-5 w-5" />
@@ -122,6 +129,7 @@ export function MobileMenu() {
 										<Link
 											href="/message"
 											className="flex items-center justify-between py-2"
+											onClick={handleNavigationClick}
 										>
 											<span>Message to Yuta(The founder)</span>
 											<IconChevronRight className="h-5 w-5" />
